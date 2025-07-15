@@ -1,11 +1,17 @@
 {
-  "name": "leigh/mt-rand",
-  "homepage": "https://github.com/lt/PHP-MT19937",
+  "name": "mld/mersenne-twister",
+  "homepage": "https://github.com/mld/mersenne-twister",
   "description": "PHP implementation of the MT19937 algorithm",
   "authors": [
     {
       "name": "Leigh T",
-      "homepage": "https://github.com/lt"
+      "homepage": "https://github.com/lt",
+      "role": "Original author"
+    },
+    {
+      "name": "Micke Löfstrand",
+      "homepage": "https://github.com/mld",
+      "role": "Maintainer"
     }
   ],
   "keywords": [
@@ -16,15 +22,37 @@
     "random"
   ],
   "license": "MIT",
-  "require": {
-    "php": ">=5.5"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "~4.0"
-  },
   "autoload": {
     "psr-4": {
-      "MersenneTwister\\": "lib"
+      "MLD\\MersenneTwister\\": "lib",
+      "Tests\\": "tests/"
     }
+  },
+  "minimum-stability": "stable",
+  "require": {
+    "php": "^5.6 || ^7.4 || ^8.4"
+  },
+  "require-dev": {
+    "pestphp/pest": "^3.8",
+    "rector/rector": "^2.1"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
+  "scripts": {
+    "test": [
+      "pest"
+    ],
+    "rector": [
+      "rector process src --dry-run"
+    ],
+    "rector:fix": [
+      "rector process src"
+    ],
+    "phpstan": [
+      "phpstan analyse src --level max"
+    ]
   }
 }
